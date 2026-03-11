@@ -57,7 +57,8 @@ const WORK_ITEMS: WorkItem[] = [
       "DAGsHub",
       "MongoDB",
     ],
-    image: "/images/placeholder.webp",
+    image:
+      "https://res.cloudinary.com/digi9xpsn/image/upload/v1773254892/Screenshot_2026-03-12_001151_vfkqqu.png",
   },
   {
     title: "Skin Cancer Detection System",
