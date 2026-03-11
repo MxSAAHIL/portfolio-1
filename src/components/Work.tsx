@@ -5,48 +5,82 @@ import WorkImage from "./WorkImage";
 
 type WorkItem = {
   title: string;
-  category: string;
-  tools: string;
+  subtitle: string;
+  description: string;
+  painPoints: string[];
+  tools: string[];
   image: string;
-  link?: string;
 };
 
 const WORK_ITEMS: WorkItem[] = [
   {
-    title: "Project One",
-    category: "Web App",
-    tools: "React, TypeScript, GSAP, Three.js",
+    title: "AI Powered RAG Chatbot for Company Policies",
+    subtitle: "GenAI · LangChain",
+    description:
+      "Built a RAG-based chatbot using LangChain and Gemini LLM that answers employee queries strictly from company policy documents, reducing hallucinated responses.",
+    painPoints: [
+      "Used SentenceTransformers to convert policy documents into vector embeddings for semantic understanding",
+      "Stored and indexed embeddings in FAISS for accurate semantic search across company policies",
+      "Integrated LangChain retriever with Gemini API to fetch relevant policy chunks per query",
+      "Generated grounded, context-aware responses tied directly to retrieved policy content",
+    ],
+    tools: [
+      "LangChain",
+      "Gemini LLM",
+      "SentenceTransformers",
+      "FAISS",
+      "Retriever Pipeline",
+      "Policy RAG",
+    ],
+    image:
+      "https://res.cloudinary.com/digi9xpsn/image/upload/v1773249881/Screenshot_2026-03-03_032307_h7cqpp.png",
+  },
+  {
+    title: "ML-Powered Network Intrusion Detection System",
+    subtitle: "End-to-End MLOps",
+    description:
+      "Developed an end-to-end ML system for network security with an automated pipeline covering data preprocessing, model training, deployment, and monitoring.",
+    painPoints: [
+      "Built ELT pipeline and trained a classification model achieving 95%+ accuracy on intrusion detection",
+      "Deployed FastAPI-based inference service on AWS EC2 for real-time prediction capabilities",
+      "Implemented CI/CD automation with GitHub Actions and Docker for reproducible deployments",
+      "Integrated MLflow for experiment tracking, DAGsHub for orchestration, and MongoDB for database storage",
+    ],
+    tools: [
+      "Python",
+      "ELT Pipeline",
+      "FastAPI",
+      "AWS EC2",
+      "GitHub Actions",
+      "Docker",
+      "MLflow",
+      "DAGsHub",
+      "MongoDB",
+    ],
     image: "/images/placeholder.webp",
   },
   {
-    title: "Project Two",
-    category: "Portfolio",
-    tools: "React, Framer Motion, WebGL",
-    image: "/images/placeholder.webp",
-  },
-  {
-    title: "Project Three",
-    category: "Interactive UI",
-    tools: "JavaScript, CSS, Motion Design",
-    image: "/images/placeholder.webp",
-  },
-  {
-    title: "Project Four",
-    category: "Creative Dev",
-    tools: "TypeScript, Three.js, Postprocessing",
-    image: "/images/placeholder.webp",
-  },
-  {
-    title: "Project Five",
-    category: "Frontend",
-    tools: "React, Node.js, REST APIs",
-    image: "/images/placeholder.webp",
-  },
-  {
-    title: "Project Six",
-    category: "Full Stack",
-    tools: "Next.js, TypeScript, MySQL",
-    image: "/images/placeholder.webp",
+    title: "Skin Cancer Detection System",
+    subtitle: "Deep Learning",
+    description:
+      "Built a binary classification deep learning system to detect Benign vs Malignant skin cancer from medical images with strong real-world prediction performance.",
+    painPoints: [
+      "Built CNN model for Benign vs Malignant classification, achieving 84-85%+ accuracy",
+      "Applied data augmentation and normalization using ImageDataGenerator to improve generalization and prevent overfitting",
+      "Designed CNN architecture with Keras Sequential API using Conv2D, MaxPooling, Dense, and Dropout layers",
+      "Deployed real-time prediction web app with Streamlit, including image upload and instant classification output",
+    ],
+    tools: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "CNN",
+      "ImageDataGenerator",
+      "Streamlit",
+      "Medical Imaging",
+    ],
+    image:
+      "https://res.cloudinary.com/digi9xpsn/image/upload/v1773249706/Screenshot_2026-03-11_224745_gtlzea.png",
   },
 ];
 
@@ -103,16 +137,44 @@ const Work = () => {
             >
               <div className="work-info">
                 <div className="work-title">
-                  <h3>{String(activeIndex + 1).padStart(2, "0")}</h3>
+                  <h3 className="work-number">{String(activeIndex + 1).padStart(2, "0")}</h3>
                   <div>
                     <h4>{activeItem.title}</h4>
-                    <p>{activeItem.category}</p>
+                    <p>{activeItem.subtitle}</p>
                   </div>
                 </div>
-                <h4>Tools and features</h4>
-                <p>{activeItem.tools}</p>
+
+                <div className="work-field">
+                  <h5 className="work-label">Project Description</h5>
+                  <p className="work-description">{activeItem.description}</p>
+                </div>
+
+                <div className="work-field">
+                  <h5 className="work-label">Pain Points Solved</h5>
+                  <ul className="work-points">
+                    {activeItem.painPoints.map((point) => (
+                      <li key={`${activeItem.title}-${point}`}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="work-field">
+                  <h5 className="work-label">Tech Stack</h5>
+                  <div className="work-tech">
+                    {activeItem.tools.map((tool) => (
+                      <span key={`${activeItem.title}-${tool}`} className="work-tech-tag">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
               </div>
-              <WorkImage image={activeItem.image} alt={activeItem.title} link={activeItem.link} />
+
+              <div className="work-right">
+                <h5 className="work-image-title">Project Image</h5>
+                <WorkImage image={activeItem.image} alt={activeItem.title} />
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
