@@ -26,10 +26,14 @@ export function setCharTimeline(
   camera: THREE.PerspectiveCamera
 ) {
   resetCharacterTriggers();
-  gsap.set([".landing-container", ".about-me", ".character-model"], {
+  gsap.set([".landing-container", ".about-me"], {
     clearProps: "opacity,transform,y,x",
   });
-  gsap.set(".character-model", { x: 0 });
+  gsap.set(".character-model", {
+    clearProps: "opacity,y,x",
+    xPercent: -50,
+    x: 0,
+  });
 
   let intensity = 0;
   intensityInterval = window.setInterval(() => {
