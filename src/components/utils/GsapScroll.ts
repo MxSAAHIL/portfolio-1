@@ -29,6 +29,7 @@ export function setCharTimeline(
   gsap.set([".landing-container", ".about-me", ".character-model"], {
     clearProps: "opacity,transform,y,x",
   });
+  gsap.set(".character-model", { x: 0 });
 
   let intensity = 0;
   intensityInterval = window.setInterval(() => {

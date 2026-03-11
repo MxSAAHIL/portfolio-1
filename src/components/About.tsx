@@ -2,10 +2,6 @@ import { motion } from "framer-motion";
 import "./styles/About.css";
 
 const About = () => {
-  const paragraphWords =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis dolores numquam iusto Ratione earum ducimus autem id iure pariatur dolorum quae maiores."
-      .split(" ");
-
   return (
     <div className="about-section" id="about">
       <div className="about-me">
@@ -20,35 +16,23 @@ const About = () => {
         </motion.h3>
         <motion.p
           className="para"
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.35 }}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.025,
-              },
-            },
-          }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {paragraphWords.map((word, index) => (
-            <motion.span
-              key={`${word}-${index}`}
-              variants={{
-                hidden: { opacity: 0, y: 36, filter: "blur(4px)" },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: { duration: 0.7, ease: "easeOut" },
-                },
-              }}
-            >
-              {word}
-              {index < paragraphWords.length - 1 ? " " : ""}
-            </motion.span>
-          ))}
+          Enthusiastic and curious problem solver with a strong passion for{" "}
+          <span className="about-highlight">AI and software development</span>,
+          actively{" "}
+          <span className="about-highlight">
+            building real-world end-to-end systems
+          </span>{" "}
+          that solve meaningful problems. A continuous learner eager to grow,
+          contribute, and{" "}
+          <span className="about-highlight">
+            make an impact in a software engineering role
+          </span>
+          .
         </motion.p>
       </div>
     </div>

@@ -25,13 +25,15 @@
 
 .about-me p {
   font-size: 33px;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 36px;
-  letter-spacing: 1px;
+  letter-spacing: normal;
+  text-transform: none;
 }
-.about-me p span {
-  display: inline-block;
-  will-change: transform, opacity, filter;
+
+.about-me p .about-highlight {
+  font-weight: 500;
+  color: #c2a4ff;
 }
 
 @media only screen and (min-width: 600px) {
