@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import "./styles/Career.css";
 
 const Career = () => {
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,

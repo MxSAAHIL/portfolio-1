@@ -63,8 +63,6 @@ const setCharacter = (
                 bodyMat.color.set("#1e3a8a");
                 bodyMat.roughness = 0.8;
                 bodyMat.metalness = 0.05;
-                bodyMat.clearcoat = 0.06;
-                bodyMat.clearcoatRoughness = 0.78;
                 bodyMat.emissive.set("#0d1a45");
                 bodyMat.emissiveIntensity = 0.03;
                 child.material = bodyMat;
@@ -77,8 +75,6 @@ const setCharacter = (
                 pantMat.color.set("#1d1f26");
                 pantMat.roughness = 0.82;
                 pantMat.metalness = 0.05;
-                pantMat.clearcoat = 0.06;
-                pantMat.clearcoatRoughness = 0.75;
                 pantMat.emissive.set("#07080b");
                 pantMat.emissiveIntensity = 0.03;
                 child.material = pantMat;
@@ -91,8 +87,6 @@ const setCharacter = (
                 shoeMat.color.set("#b81f2f");
                 shoeMat.roughness = 0.48;
                 shoeMat.metalness = 0.08;
-                shoeMat.clearcoat = 0.18;
-                shoeMat.clearcoatRoughness = 0.42;
                 shoeMat.emissive.set("#2b0810");
                 shoeMat.emissiveIntensity = 0.06;
                 child.material = shoeMat;
@@ -105,8 +99,6 @@ const setCharacter = (
                 faceMat.color.set("#f1d486");
                 faceMat.roughness = 0.46;
                 faceMat.metalness = 0.02;
-                faceMat.clearcoat = 0.14;
-                faceMat.clearcoatRoughness = 0.5;
                 faceMat.emissive.set("#2d2613");
                 faceMat.emissiveIntensity = 0.04;
                 child.material = faceMat;
