@@ -30,8 +30,8 @@ export const handleTouchEnd = (
     setMousePosition(0, 0, 0.03, 0.03);
     setTimeout(() => {
       setMousePosition(0, 0, 0.1, 0.2);
-    }, 1000);
-  }, 2000);
+    }, 300);
+  }, 120);
 };
 
 export const handleHeadRotation = (

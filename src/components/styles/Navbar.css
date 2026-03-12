@@ -45,6 +45,24 @@
   font-size: 14px;
   letter-spacing: 0.2px;
 }
+@media only screen and (max-width: 600px) {
+  .header {
+    align-items: flex-start;
+    padding: 16px 0px 10px;
+  }
+  .header ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    column-gap: 16px;
+    row-gap: 6px;
+    max-width: 72%;
+  }
+  .header ul li {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+  }
+}
 @media only screen and (min-width: 500px) {
   .header {
     padding: 20px 0px;

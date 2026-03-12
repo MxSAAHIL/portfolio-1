@@ -295,3 +295,22 @@
     font-size: 19px;
   }
 }
+@media only screen and (max-width: 640px) {
+  .work-slider {
+    display: block;
+  }
+  .work-nav {
+    display: none;
+  }
+  .work-box {
+    padding: 16px;
+    gap: 18px;
+  }
+  .work-title {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .work-image img {
+    min-height: 200px;
+  }
+}

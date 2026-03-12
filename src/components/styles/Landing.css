@@ -381,6 +381,75 @@
     font-size: 55px;
   }
 }
+@media screen and (max-width: 767px) {
+  .landing-section {
+    min-height: 100svh;
+  }
+  .landing-intro {
+    top: 20%;
+    left: 50%;
+    text-align: center;
+    --intro-base-x: -50%;
+    --intro-base-y: 0%;
+    transform: translate(var(--intro-base-x), var(--intro-base-y));
+    transition: none;
+  }
+  .landing-info {
+    top: 41%;
+    bottom: inherit;
+    left: 50%;
+    right: auto;
+    text-align: center;
+    --info-base-x: -50%;
+    --info-base-y: 0%;
+    transform: translate(var(--info-base-x), var(--info-base-y));
+    transition: none;
+  }
+  .landing-role-block {
+    align-items: center;
+  }
+  .landing-intro h2,
+  .landing-role-label {
+    font-size: 15px;
+    letter-spacing: 1.4px;
+  }
+  .landing-intro h1,
+  .landing-role-word {
+    font-size: 23px;
+    line-height: 25px;
+    letter-spacing: 1.3px;
+  }
+  .character-model {
+    height: min(57vh, 490px);
+    bottom: max(-8px, env(safe-area-inset-bottom));
+  }
+  .character-hover {
+    width: 220px;
+    height: 220px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .landing-intro {
+    top: 19%;
+  }
+  .landing-info {
+    top: 40%;
+  }
+  .landing-intro h1,
+  .landing-role-word {
+    font-size: 21px;
+    line-height: 23px;
+    letter-spacing: 1px;
+  }
+  .character-model {
+    height: min(53vh, 430px);
+  }
+  .landing-intro h2,
+  .landing-role-label {
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}
 @media screen and (min-width: 1025px) {
   .character-model {
     height: 100vh;

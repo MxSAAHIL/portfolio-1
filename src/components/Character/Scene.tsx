@@ -52,8 +52,6 @@ const Scene = () => {
     let stopHover: (() => void) | undefined;
     let rafId: number | null = null;
     let introTimer: number | null = null;
-    let touchMoveTarget: HTMLElement | null = null;
-    let touchMoveHandler: ((event: TouchEvent) => void) | null = null;
     let disposed = false;
 
     const clock = new THREE.Clock();
@@ -87,8 +85,6 @@ const Scene = () => {
 
     let mouse = { x: 0, y: 0 };
     let interpolation = { x: 0.1, y: 0.2 };
-    let debounce: number | undefined;
-
     const onMouseMove = (event: MouseEvent) => {
       handleMouseMove(event, (x, y) => {
         mouse = { x, y };
@@ -96,29 +92,22 @@ const Scene = () => {
     };
 
     const onTouchStart = (event: TouchEvent) => {
-      const element = event.target as HTMLElement;
-      debounce = window.setTimeout(() => {
-        touchMoveTarget = element;
-        touchMoveHandler = (touchEvent: TouchEvent) => {
-          handleTouchMove(touchEvent, (x, y) => {
-            mouse = { x, y };
-          });
-        };
-        touchMoveTarget.addEventListener("touchmove", touchMoveHandler);
-      }, 200);
+      handleTouchMove(event, (x, y) => {
+        mouse = { x, y };
+      });
     };
 
-    const onTouchEnd = () => {
+    const onTouchMove = (event: TouchEvent) => {
+      handleTouchMove(event, (x, y) => {
+        mouse = { x, y };
+      });
+    };
+
+    const onTouchEnd = (_event: TouchEvent) => {
       handleTouchEnd((x, y, interpolationX, interpolationY) => {
         mouse = { x, y };
         interpolation = { x: interpolationX, y: interpolationY };
       });
-
-      if (touchMoveTarget && touchMoveHandler) {
-        touchMoveTarget.removeEventListener("touchmove", touchMoveHandler);
-        touchMoveTarget = null;
-        touchMoveHandler = null;
-      }
     };
 
     const onResize = () => {
@@ -128,8 +117,9 @@ const Scene = () => {
 
     const landingDiv = document.getElementById("landingDiv");
     document.addEventListener("mousemove", onMouseMove);
-    landingDiv?.addEventListener("touchstart", onTouchStart);
-    landingDiv?.addEventListener("touchend", onTouchEnd);
+    landingDiv?.addEventListener("touchstart", onTouchStart, { passive: true });
+    landingDiv?.addEventListener("touchmove", onTouchMove, { passive: true });
+    landingDiv?.addEventListener("touchend", onTouchEnd, { passive: true });
     window.addEventListener("resize", onResize);
 
     const animate = () => {
@@ -156,7 +146,6 @@ const Scene = () => {
 
     return () => {
       disposed = true;
-      if (debounce !== undefined) window.clearTimeout(debounce);
       if (introTimer !== null) window.clearTimeout(introTimer);
       if (rafId !== null) window.cancelAnimationFrame(rafId);
       stopHover?.();
@@ -171,11 +160,8 @@ const Scene = () => {
       window.removeEventListener("resize", onResize);
       document.removeEventListener("mousemove", onMouseMove);
       landingDiv?.removeEventListener("touchstart", onTouchStart);
+      landingDiv?.removeEventListener("touchmove", onTouchMove);
       landingDiv?.removeEventListener("touchend", onTouchEnd);
-
-      if (touchMoveTarget && touchMoveHandler) {
-        touchMoveTarget.removeEventListener("touchmove", touchMoveHandler);
-      }
 
       if (canvasNode.contains(renderer.domElement)) {
         canvasNode.removeChild(renderer.domElement);

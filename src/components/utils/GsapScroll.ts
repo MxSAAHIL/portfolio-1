@@ -7,7 +7,12 @@ gsap.registerPlugin(ScrollTrigger);
 let intensityInterval: number | null = null;
 let monitorFlickerTween: gsap.core.Tween | null = null;
 
-const triggerIds = ["char-landing", "char-about", "char-what", "char-what-mobile"];
+const triggerIds = [
+  "char-landing",
+  "char-about",
+  "char-what",
+  "char-what-mobile",
+];
 
 function resetCharacterTriggers() {
   triggerIds.forEach((id) => {
@@ -176,14 +181,31 @@ export function setCharTimeline(
   }
 
   if (character) {
+    gsap.set(".what-box-in", { clearProps: "opacity,transform" });
+    gsap.set(".what-content", { clearProps: "opacity,transform" });
+
     const mobileTimeline = gsap.timeline({
       scrollTrigger: {
         id: "char-what-mobile",
-        trigger: ".what-box-in",
-        start: "top 70%",
-        end: "bottom top",
+        trigger: ".whatIDO",
+        start: "top 78%",
+        end: "top 45%",
+        toggleActions: "play none none none",
+        invalidateOnRefresh: true,
       },
     });
-    mobileTimeline.to(".what-box-in", { display: "flex", duration: 0.1 }, 0);
+    mobileTimeline
+      .fromTo(
+        ".what-box-in",
+        { opacity: 0, y: 42, scale: 0.97 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out" },
+        0
+      )
+      .fromTo(
+        ".what-content",
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
+        0.12
+      );
   }
 }

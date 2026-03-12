@@ -49,6 +49,17 @@ const Landing = ({ children }: PropsWithChildren) => {
     const section = document.getElementById("landingDiv");
     const container = containerRef.current;
     if (!section || !container) return;
+    const disableParallax =
+      window.innerWidth <= 1024 ||
+      window.matchMedia("(hover: none)").matches ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      "ontouchstart" in window;
+
+    if (disableParallax) {
+      container.style.setProperty("--parallax-x", "0");
+      container.style.setProperty("--parallax-y", "0");
+      return;
+    }
 
     const handleMove = (event: MouseEvent) => {
       const rect = section.getBoundingClientRect();
