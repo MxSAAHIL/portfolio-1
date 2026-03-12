@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 
@@ -194,6 +195,18 @@ const Work = () => {
             aria-label={`Go to project ${index + 1}`}
           />
         ))}
+      </div>
+
+      <div className="work-mobile-controls" data-cursor="disable">
+        <button className="work-mobile-nav" onClick={previous} aria-label="Previous project">
+          <FiChevronLeft />
+        </button>
+        <p className="work-mobile-index">
+          {String(activeIndex + 1).padStart(2, "0")} / {String(itemCount).padStart(2, "0")}
+        </p>
+        <button className="work-mobile-nav" onClick={next} aria-label="Next project">
+          <FiChevronRight />
+        </button>
       </div>
     </section>
   );

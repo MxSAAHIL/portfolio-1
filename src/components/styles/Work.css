@@ -253,6 +253,32 @@
   gap: 8px;
 }
 
+.work-mobile-controls {
+  display: none;
+}
+
+.work-mobile-nav {
+  border: 1px solid rgba(168, 124, 255, 0.5);
+  background: rgba(23, 21, 27, 0.9);
+  color: #efebf6;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.work-mobile-index {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  color: #d4cae8;
+  font-family: "Geist", monospace;
+}
+
 .work-dot {
   width: 9px;
   height: 9px;
@@ -301,6 +327,13 @@
   }
   .work-nav {
     display: none;
+  }
+  .work-mobile-controls {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
   }
   .work-box {
     padding: 16px;
